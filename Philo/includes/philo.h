@@ -6,7 +6,7 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 15:42:22 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 00:00:05 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 01:08:16 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,18 @@ typedef struct s_input
 
 typedef struct s_info
 {
-	t_input	*input;
-	t_bool	*is_taken;
-	t_state	*philo_doing;
+	t_input			*input;
+	t_bool	*		is_taken;
+	t_state			*philo_doing;
+	int				*eat_cnt;
+	pthread_mutex_t	*mutex_lst;
+	pthread_t		*thread_lst;
+	int				target;
+	pthread_t		monitor;
 }				t_info;
 
 long long	get_timestamp(void);
-void		put_state(t_info *info);
+void		put_state(t_info *info, int p_num);
 void		free_info(t_info *info);
 void		put_info(t_info *info);
 t_bool		init(int argc, char **argv, t_info *info);

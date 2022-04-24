@@ -6,31 +6,28 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 18:46:01 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/24 23:53:30 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 00:19:13 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//void	put_state(t_info *info)
-//{
-//	long long	time;
-//
-//	time = get_timestamp();
-//	ft_putnbr_fd((int)time, STDOUT_FILENO);
-//	ft_putchar_fd(' ', STDOUT_FILENO);
-//	ft_putnbr_fd(info->input->p_num + 1, STDOUT_FILENO);
-//	if (info->philo_doing == TAKE)
-//		ft_putendl_fd(" has taken a fork", STDOUT_FILENO);
-//	else if (info->state == EAT)
-//		ft_putendl_fd(" is eating", STDOUT_FILENO);
-//	else if (info->state == SLEEP)
-//		ft_putendl_fd(" is sleeping", STDOUT_FILENO);
-//	else if (info->state == THINK)
-//		ft_putendl_fd(" is thinking", STDOUT_FILENO);
-//	else
-//		ft_putendl_fd(" died", STDOUT_FILENO);
-//}
+void	put_state(t_info *info, int p_num)
+{
+	ft_putnbr_fd((int)get_timestamp(), STDOUT_FILENO);
+	ft_putchar_fd(' ', STDOUT_FILENO);
+	ft_putnbr_fd(p_num + 1, STDOUT_FILENO);
+	if (info->philo_doing[p_num] == TAKE)
+		ft_putendl_fd(" has taken a fork", STDOUT_FILENO);
+	else if (info->philo_doing[p_num] == EAT)
+		ft_putendl_fd(" is eating", STDOUT_FILENO);
+	else if (info->philo_doing[p_num] == SLEEP)
+		ft_putendl_fd(" is sleeping", STDOUT_FILENO);
+	else if (info->philo_doing[p_num] == THINK)
+		ft_putendl_fd(" is thinking", STDOUT_FILENO);
+	else
+		ft_putendl_fd(" died", STDOUT_FILENO);
+}
 
 void	ft_putchar_fd(char c, int fd)
 {

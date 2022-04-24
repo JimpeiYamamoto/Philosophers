@@ -6,7 +6,7 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 23:59:33 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 00:04:29 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 00:57:02 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ t_bool	init(int argc, char **argv, t_info *info)
 	}
 	info->is_taken = malloc(sizeof(t_bool) * (info->input->p_num + 1));
 	info->philo_doing = malloc(sizeof(int) * (info->input->p_num + 1));
-	if (info->is_taken == NULL || info->philo_doing == NULL)
+	info->eat_cnt = malloc(sizeof(int) * (info->input->p_num + 1));
+	info->mutex_lst = malloc(sizeof(pthread_mutex_t) * (info->input->p_num + 1));
+	info->thread_lst = malloc(sizeof(pthread_t) * (info->input->p_num + 1));
+	if (info->is_taken == NULL || info->philo_doing == NULL ||
+		info->eat_cnt == NULL || info->mutex_lst == NULL ||
+		info->thread_lst == NULL)
 	{
 		free_info(info);
 		return (FALSE);
@@ -68,6 +73,8 @@ t_bool	init(int argc, char **argv, t_info *info)
 	{
 		info->is_taken[i] = FALSE;
 		info->philo_doing[i] = NOTHING;
+		info->eat_cnt[i] = 0;
+		pthread_mutex_init(&(info->mutex_lst[i]), NULL);
 		i++;
 	}
 	return (TRUE);
