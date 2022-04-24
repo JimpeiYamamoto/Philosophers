@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 15:36:56 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 00:01:50 by yjimpei          ###   ########.fr       */
+/*   Created: 2022/04/24 23:35:06 by yjimpei           #+#    #+#             */
+/*   Updated: 2022/04/24 23:38:29 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-
-int	main(int argc, char **argv)
+void	ft_free(void *ptr)
 {
-	long long	time_stamp;
-	t_info		*info;
+	free(ptr);
+	ptr = NULL;
+}
 
-	info = malloc(sizeof(t_info));
-	if (info == NULL)
-		return (EXIT_FAILURE);
-	if (init(argc, argv, info) == FALSE)
-		return (EXIT_FAILURE);
-	put_info(info);
-
-
-
-	time_stamp = get_timestamp();
-	printf("%lld\n", time_stamp);
-
-
-
-	free_info(info);
-	return (EXIT_SUCCESS);
+void	free_info(t_info *info)
+{
+	ft_free(info->input);
+	ft_free(info->is_taken);
+	ft_free(info->philo_doing);
+	ft_free(info);
 }

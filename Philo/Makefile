@@ -1,13 +1,18 @@
 NAME = philo
 CC = gcc
 CFLAGS = -pthread -Wall -Wextra -Werror
+CFLAGS += -g -fsanitize=address
 INCLUDES = -I./includes -I.
 
 SRC	=	srcs/main.c \
 		srcs/ft_atoi.c \
 		srcs/ft_put.c \
 		srcs/ft_strutils.c \
-		srcs/ft_isutils.c
+		srcs/ft_isutils.c \
+		srcs/ft_lstutils.c \
+		srcs/ft_time.c \
+		srcs/ft_free.c \
+		srcs/init.c
 SRC_DIRS = ${dir ${SRC}}
 OBJ_DIR = ./obj
 BIN_DIRS = ${addprefix ${OBJ_DIR}/, ${SRC_DIRS}}

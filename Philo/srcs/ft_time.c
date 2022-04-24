@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_time.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 15:36:56 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 00:01:50 by yjimpei          ###   ########.fr       */
+/*   Created: 2022/04/24 21:50:34 by yjimpei           #+#    #+#             */
+/*   Updated: 2022/04/24 21:50:53 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-
-int	main(int argc, char **argv)
+long long	get_timestamp(void)
 {
-	long long	time_stamp;
-	t_info		*info;
+	long long		msec;
+	struct timeval	tv;
 
-	info = malloc(sizeof(t_info));
-	if (info == NULL)
-		return (EXIT_FAILURE);
-	if (init(argc, argv, info) == FALSE)
-		return (EXIT_FAILURE);
-	put_info(info);
-
-
-
-	time_stamp = get_timestamp();
-	printf("%lld\n", time_stamp);
-
-
-
-	free_info(info);
-	return (EXIT_SUCCESS);
+	if (gettimeofday(&tv, NULL) == ERROR)
+		return (ERROR);
+	msec = (tv.tv_usec - tv.tv_usec % 1000 ) / 1000;
+	return (tv.tv_sec * 1000 + msec);
 }
