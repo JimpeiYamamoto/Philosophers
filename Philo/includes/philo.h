@@ -6,7 +6,7 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 15:42:22 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 01:08:16 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 01:22:39 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ typedef struct s_input
 typedef struct s_info
 {
 	t_input			*input;
+	long long		*last_eat_time;
 	t_bool	*		is_taken;
 	t_state			*philo_doing;
 	int				*eat_cnt;
 	pthread_mutex_t	*mutex_lst;
 	pthread_t		*thread_lst;
 	int				target;
-	pthread_t		monitor;
+	pthread_t		monitor_th;
+	pthread_mutex_t	monitor_mu;
 }				t_info;
 
 long long	get_timestamp(void);

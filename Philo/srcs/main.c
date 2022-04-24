@@ -6,7 +6,7 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 15:36:56 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 01:12:26 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 01:25:00 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	start_thread(t_info *info)
 	while (info->input->p_num > i)
 	{
 		info->target = i;
+		info->last_eat_time[i] = get_timestamp();
 		pthread_create(&(info->thread_lst[i]), NULL, philo_action, info);
 		i++;
 		if (i == info->input->p_num)
-			pthread_create(&(info->monitor), NULL, monitoring, info);
+			pthread_create(&(info->monitor_th), NULL, monitoring, info);
 	}
 }
 

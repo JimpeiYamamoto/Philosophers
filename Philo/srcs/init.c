@@ -6,7 +6,7 @@
 /*   By: yjimpei <yjimpei@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 23:59:33 by yjimpei           #+#    #+#             */
-/*   Updated: 2022/04/25 00:57:02 by yjimpei          ###   ########.fr       */
+/*   Updated: 2022/04/25 01:19:30 by yjimpei          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ t_bool	init(int argc, char **argv, t_info *info)
 	info->eat_cnt = malloc(sizeof(int) * (info->input->p_num + 1));
 	info->mutex_lst = malloc(sizeof(pthread_mutex_t) * (info->input->p_num + 1));
 	info->thread_lst = malloc(sizeof(pthread_t) * (info->input->p_num + 1));
+	info->last_eat_time = malloc(sizeof(long long) * (info->input->p_num + 1));
 	if (info->is_taken == NULL || info->philo_doing == NULL ||
 		info->eat_cnt == NULL || info->mutex_lst == NULL ||
-		info->thread_lst == NULL)
+		info->thread_lst == NULL || info->last_eat_time == NULL)
 	{
 		free_info(info);
 		return (FALSE);
