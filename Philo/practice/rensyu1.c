@@ -29,6 +29,7 @@ int	main(void)
 
 	data.age = 0;
 	data.name = strdup("jimpei");
+	printf("age=%d\nname=%s\n", data.age, data.name);
 	pthread_create(&tid, NULL, do_something, (void*)&data);
 	printf("age=%d\nname=%s\n", data.age, data.name);
 	pthread_join(tid, NULL);
