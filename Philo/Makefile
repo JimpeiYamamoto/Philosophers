@@ -3,7 +3,11 @@ CC = gcc
 CFLAGS = -pthread -Wall -Wextra -Werror
 INCLUDES = -I./includes -I.
 
-SRC	=	srcs/main.c
+SRC	=	srcs/main.c \
+		srcs/ft_atoi.c \
+		srcs/ft_put.c \
+		srcs/ft_strutils.c \
+		srcs/ft_isutils.c
 SRC_DIRS = ${dir ${SRC}}
 OBJ_DIR = ./obj
 BIN_DIRS = ${addprefix ${OBJ_DIR}/, ${SRC_DIRS}}
